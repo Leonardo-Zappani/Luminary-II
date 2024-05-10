@@ -54,6 +54,7 @@ module App
       from: 'no-reply@example.com'
     }
 
+    config.autoload_paths << Rails.root.join('lib')
     config.action_mailer.deliver_later_queue_name = 'mailers'
 
     config.generators do |g|
