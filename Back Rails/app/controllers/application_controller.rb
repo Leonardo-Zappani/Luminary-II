@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 
-class ApplicationController < ActionController::Base
-  include Pundit::Authorization
-  include ActiveStorage::SetCurrent
+class ApplicationController < ActionController::API
+  before_action :authenticate_request
+  attr_reader :current_user
 
-  after_action :verify_authorized,
-               except: :index,
-               unless: -> { devise_controller? || active_admin_controller? }
-  after_action :verify_policy_scoped,
-               only: :index,
-               unless: -> { devise_controller? || active_admin_controller? }
-  # Prevent CSRF attacks by raising an exception.
-  protect_from_forgery with: :exception
+  private
 
-  def active_admin_controller?
-    is_a?(ActiveAdmin::BaseController)
+  def authenticate_request
+    @current_user = AuthorizeApiRequest.call(request.headers).result
+    render json: { error: 'Não autorizado' }, status: :unauthorized unless @current_user
   end
 end

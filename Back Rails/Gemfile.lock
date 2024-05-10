@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: 6b0659f18c678b319913d0fb053e96aa555857aa
-  specs:
-    devise_token_auth (1.2.2)
-      bcrypt (~> 3.0)
-      devise (> 3.5.2, < 5)
-      rails (>= 4.2.0, < 7.2)
-
-GIT
   remote: https://github.com/rootstrap/rspec-retry.git
   revision: 8266536fb6f4bc8d005c3863bcdfe8d7a6c9b203
   branch: add-intermittent-callback
@@ -182,12 +173,6 @@ GEM
     delayed_job_active_record (4.1.8)
       activerecord (>= 3.0, < 8.0)
       delayed_job (>= 3.0, < 5)
-    devise (4.9.4)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.5.1)
     docile (1.4.0)
     dotenv (3.1.1)
@@ -301,6 +286,7 @@ GEM
     jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
     json (2.7.2)
+    jwt (2.7.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -367,7 +353,6 @@ GEM
       sawyer (~> 0.9)
     oj (3.16.3)
       bigdecimal (>= 3.0)
-    orm_adapter (0.5.0)
     pagy (8.4.0)
     parallel (1.24.0)
     parallel_tests (4.7.1)
@@ -565,6 +550,7 @@ GEM
     sexp_processor (4.17.1)
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
+    simple_command (1.0.1)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -591,8 +577,6 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
     uri (0.13.0)
-    warden (1.2.9)
-      rack (>= 2.0.9)
     webmock (3.23.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -617,14 +601,13 @@ DEPENDENCIES
   activeadmin (~> 3.2)
   annotate (~> 3.2, >= 3.0.3)
   aws-sdk-s3 (~> 1.148)
+  bcrypt
   better_errors (~> 2.10)
   binding_of_caller (~> 1.0)
   bootsnap (~> 1.17)
   brakeman (~> 6.1)
   capybara (~> 3.40)
   delayed_job_active_record (~> 4.1)
-  devise (~> 4.9)
-  devise_token_auth!
   dotenv-rails (~> 3.1.1)
   draper (~> 4.0, >= 4.0.1)
   factory_bot_rails (~> 6.4)
@@ -636,6 +619,7 @@ DEPENDENCIES
   i18n-tasks (~> 1.0.13)
   jbuilder (~> 2.12)
   jsbundling-rails (~> 1.3)
+  jwt
   knapsack (~> 4.0)
   letter_opener (~> 1.10)
   listen (~> 3.9)
@@ -672,6 +656,7 @@ DEPENDENCIES
   selenium-webdriver (~> 4.20.1)
   sendgrid (~> 1.2.4)
   shoulda-matchers (~> 6.2)
+  simple_command
   simplecov (~> 0.22.0)
   sprockets (~> 4.2.1)
   strong_migrations (~> 1.8)
@@ -680,7 +665,7 @@ DEPENDENCIES
   yaaf (~> 2.2)
 
 RUBY VERSION
-   ruby 3.3.1p55
+   ruby 3.1.4p223
 
 BUNDLED WITH
    2.5.7

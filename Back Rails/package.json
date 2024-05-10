@@ -1,5 +1,5 @@
 {
-  "name": "rails_api_base",
+  "name": "luminary",
   "private": "true",
   "dependencies": {
     "@activeadmin/activeadmin": "3.2.1",
