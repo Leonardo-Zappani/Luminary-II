@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -19,18 +17,12 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
-  # Allow requests from the host defined in SERVER_HOST env variable
-  config.hosts << ENV.fetch('SERVER_HOST', 'localhost')
-
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
-
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -42,8 +34,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
 
@@ -65,13 +56,6 @@ Rails.application.configure do
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
-  config.assets.debug = true
-
-  # Suppress logger output for asset requests.
-  config.assets.quiet = true
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
@@ -83,5 +67,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Raise error when a before_action's only/except options reference missing actions
-  # config.action_controller.raise_on_missing_callback_actions = true
+  config.action_controller.raise_on_missing_callback_actions = true
 end
