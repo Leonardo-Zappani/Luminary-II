@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_13_233929) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_13_235646) do
+  create_table "actions", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "assigned_to_ids"
+    t.string "artifact_ids"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artifacts", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "type"
+    t.string "status"
+    t.integer "actions_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actions_id"], name: "index_artifacts_on_actions_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -26,4 +46,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_13_233929) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "artifacts", "actions", column: "actions_id"
 end
