@@ -1,76 +1,91 @@
-# React CRUD API with Typescript <img src='https://emojis.slackmojis.com/emojis/images/1643514155/1161/react.png?1643514155' height='25'> <img src='https://emojis.slackmojis.com/emojis/images/1643514173/1383/typescript.png?1643514173' height='25'> <img src='https://emojis.slackmojis.com/emojis/images/1643515045/10754/tailwindcss.png?1643515045' height='25'>
+# Lightence
 
-## Table of Content
+React-powered **100% FREE** Admin Dashboard Template for building rich user interfaces significantly faster. For developers of all levels. Open-source and maintained by the [Altence](https://altence.com) team.
 
-- [About The Project](#about-the-project)
-  - [Description](#description)
-  - [Built With](#built-with)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Demo](#demo)
-- [Contact](#contact)
+<p align="center">
+    <img src="./public/Lightence-screenshot.png" alt="Lightence Admin Template">
+</p>
 
-## About The Project
+### Demo
+Check out a [live demo](https://altence.com/lightence-landing).
 
-![preview](demo/preview.png)
+## Key Features
+- 🚀 This solution allows you to reduce MVP development costs by up to 40%
+- 🐜 Lightence admin dashboard template is based on a rich library powered by [Ant Design](https://ant.design/)
+- 💰 100% Free: start using it for your projects right away. No hidden payments, no trials, nothing
+- 💊 Medical dashboard includes: customizable medical dashboard for data-driven applications
+- 💻 Any backend supported: the dashboard supports any kind of backend by just updating an API
+- ⭐ Modern & great for projects of tomorrow: built with [React](https://reactjs.org/), [Redux](https://redux.js.org/) and [Ant Design](https://ant.design/); _Bootstrap_ and _jQuery_ 100% free
+- 🇺🇳 Internationalized: built-in internationalization support
+- 📱 Mobile first: optimized to reduce data usage on mobile devices
+- 🔥 Responsive & adaptive: supports mobile, tablet, and desktop screens
+- ☎️ Supports PWA to get all advantages of native mobile apps
+- 🎨 Theming: use built-in light and dark themes or implement your own theme with just lines of code
+- 🌓 Day & night mode: dark theme is automatically activated
+- 🏋️ Optimized bundle size: use the latest features of building tools to reduce the final bundle size
 
-![add-preview](demo/add-preview.png)
+## Under the Hood
+- 💯 60+ ready-to-use customizable UI components
+- 🚄 All-set business flow: login, sign up, forgot password, profile flows
+- 🐝 Custom pages: 400 error, 500 error, profile
+- 🗞️ Built-in apps: News Feed
+- 👍 Fully typescripted
+- ✅ Clean code: enjoy the world-recognized code style with our own enhancements
+- 🧱 Solid architecture: in compliance with the  best architectural practices
+- 📃 [MIT](LICENSE) License
 
-![edit-preview](demo/edit-preview.png)
+### Installation
 
-![delete-preview](demo/delete-preview.png)
+#### Requirements
+- [Node.js](https://nodejs.org/en/) version _>=16.0.0_
+- [yarn](https://yarnpkg.com/)
+- [git](https://git-scm.com/)
 
-## Description
+#### To go with the latest version please copy and past in your terminal the following steps
 
-This project is a complete CRUD of a camera store made with ReactJS, which I made to practice CRUD operations and make requests to a [REST API that I made with NodeJS and Typescript](https://github.com/josemiguel02/nodejs-express-ts-mongodb), also for the UI I used TailwindCSS.
-
-## Built With
-
-[![ReactJS](https://img.shields.io/badge/React.js-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org)
-
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-
-## Installation
-
-1. Clone the repo and change "my-project" to your project name.
-
-```sh
-  git clone https://github.com/josemiguel02/react-crud-ts.git ./my-project
+```
+git clone https://github.com/altence/lightence-ant-design-react-template.git my-awesome-project && cd my-awesome-project
 ```
 
-2. Go to the project directory
-
-```sh
-  cd my-project
+Development mode
+```
+yarn install && yarn start
 ```
 
-3. Install NPM packages
-
-```sh
-  yarn install
+Production mode
+```
+yarn install && yarn build
 ```
 
-## Usage
-
-Run the project in development
-
-```npm
-  yarn dev
+#### How to analyze the bundle size
+```
+yarn install && yarn build --stats
 ```
 
-Build the project
+And then use the [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) to open _build/bundle-stats.json_.
 
-```npm
-  yarn build
-```
+### Where to get help
+[<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">](mailto:lightence.admin@altence.com)
+[<img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white">](https://twitter.com/altence_team)
+[<img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white">](https://discord.gg/H5RdXAZsYm)
+[<img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white">](https://www.facebook.com/groups/altence)
 
-## Demo
+### Contribution
+Let’s create great products together! We encourage and welcome collaboration and any type of contribution. 👉 Learn the [contributing docs](CONTRIBUTING.md) on how to contribute the right way.
 
-- [View demo](https://cameras-store.onrender.com)
+### Want to get popular?
+If you use **Lightence** in your app development, please, let us know, and we’ll showcase your work to provide more awareness to your product.
 
-## Contact
+### Components by request
+As our admin system with a medical dashboard is fully customizable, we understand that you might need more components than it currently has. In case you didn't find a needed component inside Lightence, [contact us](mailto:lightence.admin@altence.com) to order it.
 
-- Gmail - [josemidev24@gmail.com](mailto:josemidev24@gmail.com)
-- Instagram - [@jmdp.02](https://www.instagram.com/jmdp.02)
+### How you can give a shout-out to us
+
+- 🏗️ Make your disruptive products with Lightence
+- ⭐ Star our GitHub repo
+- 🐞 Create requests, submit bugs, suggest new features
+- ☄️ Spread the word and share links about **Lightence** on social media
+- 🔥 Follow us on [Twitter](https://twitter.com/altence_team) and [LinkedIn](https://linkedin.com/company/altence)
+
+### Need developers’ help?
+At [Altence](https://altence.com), we are always ready to get your feedback or give you advice if needed. We can also become your partner in development in case you need help with your projects. Drop us a line ([email](mailto:lightence.admin@altence.com)) and we’ll get back to you shortly.
