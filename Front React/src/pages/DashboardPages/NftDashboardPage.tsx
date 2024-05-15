@@ -12,9 +12,18 @@ import { RecentActivity } from '@app/components/nft-dashboard/recentActivity/Rec
 import * as S from './DashboardPage.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import {useLogin} from "@app/hooks/useLogin";
+import LoginPage from "@app/pages/LoginPage";
 
 const MedicalDashboardPage: React.FC = () => {
   const { isDesktop } = useResponsive();
+  const { token } = useLogin();
+
+  if (!token) {
+    return (
+      <LoginPage />
+    )
+  }
 
   const desktopLayout = (
     <BaseRow>
@@ -77,7 +86,7 @@ const MedicalDashboardPage: React.FC = () => {
 
   return (
     <>
-      <PageTitle>NFT Dashboard</PageTitle>
+      <PageTitle>Luminary</PageTitle>
       {isDesktop ? desktopLayout : mobileAndTabletLayout}
     </>
   );

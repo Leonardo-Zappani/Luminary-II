@@ -7,21 +7,22 @@ import { BasePopover } from '@app/components/common/BasePopover/BasePopover';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseAvatar } from '@app/components/common/BaseAvatar/BaseAvatar';
+import {useLogin} from "@app/hooks/useLogin";
 
 export const ProfileDropdown: React.FC = () => {
   const { isTablet } = useResponsive();
+  const { token , user, setUser, setToken} = useLogin();
 
-  const user = useAppSelector((state) => state.user.user);
 
   return user ? (
     <BasePopover content={<ProfileOverlay />} trigger="click">
       <S.ProfileDropdownHeader as={BaseRow} gutter={[10, 10]} align="middle">
         <BaseCol>
-          <BaseAvatar src={user.imgUrl} alt="User" shape="circle" size={40} />
+          <BaseAvatar src={user.profileImage} alt="User" shape="circle" size={40} />
         </BaseCol>
         {isTablet && (
           <BaseCol>
-            <span>{`${user.firstName} ${user.lastName[0]}`}</span>
+            <span>{`${user.userName}`}</span>
           </BaseCol>
         )}
       </S.ProfileDropdownHeader>

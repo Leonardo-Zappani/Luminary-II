@@ -4,6 +4,7 @@ import { useResponsive } from 'hooks/useResponsive';
 import * as S from './MainSider.styles';
 import { SiderLogo } from '../SiderLogo';
 import SiderMenu from '../SiderMenu/SiderMenu';
+import {useLogin} from "@app/hooks/useLogin";
 
 interface MainSiderProps {
   isCollapsed: boolean;
@@ -12,10 +13,15 @@ interface MainSiderProps {
 
 const MainSider: React.FC<MainSiderProps> = ({ isCollapsed, setCollapsed, ...props }) => {
   const { isDesktop, mobileOnly, tabletOnly } = useResponsive();
+  const { token } = useLogin();
 
   const isCollapsible = useMemo(() => mobileOnly && tabletOnly, [mobileOnly, tabletOnly]);
 
   const toggleSider = () => setCollapsed(!isCollapsed);
+
+  if (!token) {
+    return null
+  }
 
   return (
     <>

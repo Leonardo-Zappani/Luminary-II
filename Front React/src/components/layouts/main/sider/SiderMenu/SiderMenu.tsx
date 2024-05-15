@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import * as S from './SiderMenu.styles';
 import { sidebarNavigation, SidebarNavigationItem } from '../sidebarNavigation';
+import {useLogin} from "@app/hooks/useLogin";
 
 interface SiderContentProps {
   setCollapsed: (isCollapsed: boolean) => void;
@@ -17,6 +18,7 @@ const sidebarNavFlat = sidebarNavigation.reduce(
 const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
   const { t } = useTranslation();
   const location = useLocation();
+  const { token } = useLogin();
 
   const currentMenuItem = sidebarNavFlat.find(({ url }) => url === location.pathname);
   const defaultSelectedKeys = currentMenuItem ? [currentMenuItem.key] : [];
@@ -25,6 +27,10 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
     children?.some(({ url }) => url === location.pathname),
   );
   const defaultOpenKeys = openedSubmenu ? [openedSubmenu.key] : [];
+
+  if (!token) {
+    return null
+  }
 
   return (
     <S.Menu
