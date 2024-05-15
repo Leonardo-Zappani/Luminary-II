@@ -7,10 +7,21 @@ const LoginPage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <>
-      <PageTitle>{t('common.login')}</PageTitle>
-      <LoginForm />
-    </>
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <div style={{ textAlign: 'center', marginTop: 220 }}>
+        <PageTitle>{t('common.login')}</PageTitle>
+        <LoginForm />
+      </div>
+    </div>
   );
 };
 

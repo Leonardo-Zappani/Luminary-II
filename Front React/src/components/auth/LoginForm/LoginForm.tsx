@@ -8,6 +8,7 @@ import { ReactComponent as FacebookIcon } from '@app/assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from '@app/assets/icons/google.svg';
 import * as S from './LoginForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
+import {useLogin} from "@app/hooks/useLogin";
 
 interface LoginFormData {
   email: string;
@@ -23,21 +24,20 @@ export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const { authenticate} = useLogin()
 
   const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = (values: LoginFormData) => {
     setLoading(true);
-    dispatch(doLogin(values))
-      .unwrap()
-      .then(() => navigate('/'))
+    authenticate(values.email, values.password)
   };
 
   return (
     <Auth.FormWrapper>
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
         <Auth.FormTitle>{t('common.login')}</Auth.FormTitle>
-        <S.LoginDescription>{t('login.loginInfo')}</S.LoginDescription>
+        <S.LoginDescription>Preencha suas informações abaixo para logar ;)</S.LoginDescription>
         <Auth.FormItem
           name="email"
           label={t('common.email')}
@@ -49,51 +49,25 @@ export const LoginForm: React.FC = () => {
             },
           ]}
         >
-          <Auth.FormInput placeholder={t('common.email')} />
+          <Auth.FormInput placeholder="leo@gmail.com" />
         </Auth.FormItem>
         <Auth.FormItem
-          label={t('common.password')}
+          label="password"
           name="password"
           rules={[{ required: true, message: t('common.requiredField') }]}
         >
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </Auth.FormItem>
-        <Auth.ActionsWrapper>
-          <BaseForm.Item name="rememberMe" valuePropName="checked" noStyle>
-            <Auth.FormCheckbox>
-              <S.RememberMeText>{t('login.rememberMe')}</S.RememberMeText>
-            </Auth.FormCheckbox>
-          </BaseForm.Item>
-          <Link to="/auth/forgot-password">
-            <S.ForgotPasswordText>{t('common.forgotPass')}</S.ForgotPasswordText>
-          </Link>
-        </Auth.ActionsWrapper>
         <BaseForm.Item noStyle>
           <Auth.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
             {t('common.login')}
           </Auth.SubmitButton>
         </BaseForm.Item>
-        <BaseForm.Item noStyle>
-          <Auth.SocialButton type="default" htmlType="submit">
-            <Auth.SocialIconWrapper>
-              <GoogleIcon />
-            </Auth.SocialIconWrapper>
-            {t('login.googleLink')}
-          </Auth.SocialButton>
-        </BaseForm.Item>
-        <BaseForm.Item noStyle>
-          <Auth.SocialButton type="default" htmlType="submit">
-            <Auth.SocialIconWrapper>
-              <FacebookIcon />
-            </Auth.SocialIconWrapper>
-            {t('login.facebookLink')}
-          </Auth.SocialButton>
-        </BaseForm.Item>
         <Auth.FooterWrapper>
           <Auth.Text>
-            {t('login.noAccount')}{' '}
+            Não possui uma conta? Crie {' '}
             <Link to="/auth/sign-up">
-              <Auth.LinkText>{t('common.here')}</Auth.LinkText>
+              <Auth.LinkText>aqui</Auth.LinkText>
             </Link>
           </Auth.Text>
         </Auth.FooterWrapper>
