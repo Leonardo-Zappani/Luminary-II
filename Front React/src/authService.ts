@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 
 const TOKEN_KEY = 'token';
 
