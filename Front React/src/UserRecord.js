@@ -73,7 +73,6 @@ class UserRecord extends Component {
         this.fetchUser();
       })
       .catch(err => {
-        debugger;
         console.log(err);
       });
   }
@@ -106,7 +105,7 @@ class UserRecord extends Component {
       });
   }
 
-  saveNewUser = e => {
+  saveNewUser = () => {
     this.setState({ tableConfiguration: { loading: true } });
     const userRecord = {};
     userRecord.name = this.state.newUser.name;
@@ -117,7 +116,7 @@ class UserRecord extends Component {
     this.setState({ tableConfiguration: { loading: false } });
   };
 
-  updateUser = e => {
+  updateUser = () => {
     const userRecord = {};
     userRecord.id = this.state.currentId;
     userRecord.data = this.state.newUser;

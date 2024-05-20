@@ -5,13 +5,13 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "antd": "3.19.1",
-    "axios": "0.18.0",
+    "antd": "^5.17.3",
+    "axios": "^1.7.1",
     "jwt-decode": "^4.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-router-dom": "^6.23.1",
-    "react-scripts": "3.0.1"
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "typescript": "3.3.3"
