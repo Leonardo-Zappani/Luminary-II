@@ -30,5 +30,16 @@ module MyApi
     config.api_only = true
 
     config.autoload_paths << Rails.root.join('lib')
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:3001' # Update to your React app's origin
+        resource '*',
+                 headers: :any,
+                 methods: [:get, :post, :put, :patch, :delete, :options, :head],
+                 credentials: true
+      end
+    end
+
   end
 end

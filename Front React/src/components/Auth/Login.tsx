@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, notification } from 'antd';
-import axios from 'axios';
+import { Form, Input, Button, Card, notification } from 'antd';
+import { authenticate } from '../../services/apiService';
 
 const Login = ({ setToken }) => {
     const [loading, setLoading] = useState(false);
@@ -8,7 +8,7 @@ const Login = ({ setToken }) => {
     const onFinish = async (values) => {
         setLoading(true);
         try {
-            const response = await axios.post('/api/login', values);
+            const response = await authenticate(values); // Use the correct function
             setToken(response.data.token);
             notification.success({ message: 'Login successful!' });
         } catch (error) {
@@ -19,17 +19,39 @@ const Login = ({ setToken }) => {
     };
 
     return (
-        <Form onFinish={onFinish}>
-            <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
-                <Input placeholder="Username" />
-            </Form.Item>
-            <Form.Item name="password" rules={[{ required: true, message: 'Please input your password!' }]}>
-                <Input.Password placeholder="Password" />
-            </Form.Item>
-            <Form.Item>
-                <Button type="primary" htmlType="submit" loading={loading}>Login</Button>
-            </Form.Item>
-        </Form>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            width: '100%',
+            background: '#f0f2f5',
+        }}>
+            <Card title="Login" style={{
+                width: '400px',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            }}>
+                <Form onFinish={onFinish}>
+                    <Form.Item
+                        name="email"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
+                    >
+                        <Input placeholder="Username" />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input.Password placeholder="Password" />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" loading={loading}>
+                            Login
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Card>
+        </div>
     );
 };
 
