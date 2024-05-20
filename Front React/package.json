@@ -7,8 +7,10 @@
   "dependencies": {
     "antd": "3.19.1",
     "axios": "0.18.0",
+    "jwt-decode": "^4.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-router-dom": "^6.23.1",
     "react-scripts": "3.0.1"
   },
   "devDependencies": {
