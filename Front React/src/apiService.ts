@@ -18,4 +18,10 @@ export const createArtifact = (artifact) => api.post('/artifacts', artifact);
 export const updateArtifact = (id, artifact) => api.put(`/artifacts/${id}`, artifact);
 export const deleteArtifact = (id) => api.delete(`/artifacts/${id}`);
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  profileImage: string;
+}
 

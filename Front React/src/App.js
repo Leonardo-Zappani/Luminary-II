@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { Layout, Button } from 'antd';
+import { Layout } from 'antd';
 import {jwtDecode} from 'jwt-decode'; // Update import to named import
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Activities from './components/Dashboard/Activities';
 import { getToken, isLoggedIn, logout } from './services/authService';
 import {loadUser} from "./services/apiService";
+import {HeaderPage} from "./components/Header/header";
+import {User} from "./apiService";
 
 const { Header, Content } = Layout;
 
@@ -28,7 +30,7 @@ const App = () => {
 
     useEffect(() => {
         if (isAuthenticated && userId) {
-            setUser(loadUser(userId));
+            loadUser(userId).then((response) => setUser(response.data));
         }
     }, [isAuthenticated, userId]);
 
@@ -48,7 +50,7 @@ const App = () => {
         <Router>
             <Layout>
                 <Header>
-                    {isAuthenticated && <Button onClick={handleLogout}>Logout</Button>}
+                    {isAuthenticated && (<HeaderPage user={user} onLogout={handleLogout} />)}
                 </Header>
                 <Content style={{ padding: '50px' }}>
                     <Routes>
