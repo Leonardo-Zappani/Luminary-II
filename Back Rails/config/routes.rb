@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   resources :actions
   resources :items
   resources :users
-  post 'authenticate', to: 'authentication#authenticate'
+  post '/users/authenticate', to: 'authentication#authenticate'
 end

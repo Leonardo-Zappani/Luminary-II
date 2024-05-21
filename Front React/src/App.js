@@ -47,27 +47,29 @@ const App = () => {
 
     return (
         <Router>
-            <Layout style={{ backgroundColor: '#f0f2f5' }}>
-                <Header>
-                    {isAuthenticated && (<HeaderPage user={user} onLogout={handleLogout} />)}
-                </Header>
-                <Content style={{ padding: '50px' }}>
-                    <Routes>
-                        <Route
-                            path="/login"
-                            element={!isAuthenticated ? <Login setToken={handleLogin} /> : <Navigate to="/" />}
-                        />
-                        <Route
-                            path="/register"
-                            element={!isAuthenticated ? <Register /> : <Navigate to="/" />}
-                        />
-                        <Route
-                            path="/"
-                            element={isAuthenticated ? <Activities user={user} /> : <Navigate to="/login" />}
-                        />
-                    </Routes>
-                </Content>
-            </Layout>
+            <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+                <Layout style={{ flex: 1 }}>
+                    <Header>
+                        {isAuthenticated && (<HeaderPage user={user} onLogout={handleLogout} />)}
+                    </Header>
+                    <Content style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '50px', flex: 1 }}>
+                        <Routes>
+                            <Route
+                                path="/login"
+                                element={!isAuthenticated ? <Login setToken={handleLogin} /> : <Navigate to="/" />}
+                            />
+                            <Route
+                                path="/register"
+                                element={!isAuthenticated ? <Register setToken={handleLogin}/> : <Navigate to="/" />}
+                            />
+                            <Route
+                                path="/"
+                                element={isAuthenticated ? <Activities user={user} /> : <Navigate to="/login" />}
+                            />
+                        </Routes>
+                    </Content>
+                </Layout>
+            </div>
         </Router>
     );
 };

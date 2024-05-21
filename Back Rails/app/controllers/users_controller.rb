@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = Item.all
+    @users = User.all
 
     render json: @users
   end
@@ -15,12 +15,15 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = Item.new(user_params)
+    @user = User.create!(email: params[:email], password: params[:password], name: params[:name])
 
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
+    sleep 0.1
+
+    command = AuthenticateUser.call(params[:email], params[:password])
+
+    if command.success?
+      user = User.find_by(email: params[:email])
+      render json: { auth_token: command.result, user_id: user.id }
     end
   end
 
@@ -41,11 +44,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = Item.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :description)
+      params.permit(:email, :password)
     end
 end

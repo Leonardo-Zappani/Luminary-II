@@ -16,7 +16,8 @@ export interface User {
 }
 
 // Authentication
-export const authenticate = (credentials) => api.post('/authenticate', credentials);
+export const authenticate = (credentials) => api.post('/users/authenticate', credentials);
+export const register = (user: User) => api.post('/users', user);
 
 // Artifacts
 export const fetchArtifacts = () => api.get('/artifacts');

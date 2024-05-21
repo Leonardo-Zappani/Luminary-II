@@ -36,13 +36,13 @@ const Login = ({ setToken }) => {
                         name="email"
                         rules={[{ required: true, message: 'Please input your username!' }]}
                     >
-                        <Input placeholder="Username" />
+                        <Input placeholder="Email" />
                     </Form.Item>
                     <Form.Item
                         name="password"
                         rules={[{ required: true, message: 'Please input your password!' }]}
                     >
-                        <Input.Password placeholder="Password" />
+                        <Input.Password placeholder="Senha" />
                     </Form.Item>
                     <Form.Item>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
