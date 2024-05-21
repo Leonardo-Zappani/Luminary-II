@@ -9,7 +9,7 @@ const Login = ({ setToken }) => {
         setLoading(true);
         try {
             const response = await authenticate(values); // Use the correct function
-            setToken(response.data.token);
+            setToken(response.data);
             notification.success({ message: 'Login successful!' });
         } catch (error) {
             notification.error({ message: 'Login failed', description: error.message });
