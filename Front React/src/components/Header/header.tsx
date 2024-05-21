@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layout, Avatar, Dropdown, Menu, Button } from 'antd';
+import { Layout, Avatar, Dropdown, Menu } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { User } from '../../apiService';
+import { User } from '../../services/apiService';
 
 interface HeaderProps {
     user: User;

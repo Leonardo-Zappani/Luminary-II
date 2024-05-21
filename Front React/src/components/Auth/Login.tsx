@@ -45,9 +45,15 @@ const Login = ({ setToken }) => {
                         <Input.Password placeholder="Password" />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" loading={loading}>
-                            Login
-                        </Button>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
+                            <Button type="primary" htmlType="submit" loading={loading}>
+                                Login
+                            </Button>
+
+                            <Button href="/register" type="primary" htmlType="button">
+                                Registrar
+                            </Button>
+                        </div>
                     </Form.Item>
                 </Form>
             </Card>

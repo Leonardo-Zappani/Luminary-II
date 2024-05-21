@@ -8,7 +8,6 @@ import Activities from './components/Dashboard/Activities';
 import { getToken, isLoggedIn, logout } from './services/authService';
 import {loadUser} from "./services/apiService";
 import {HeaderPage} from "./components/Header/header";
-import {User} from "./apiService";
 
 const { Header, Content } = Layout;
 
@@ -48,7 +47,7 @@ const App = () => {
 
     return (
         <Router>
-            <Layout>
+            <Layout style={{ backgroundColor: '#f0f2f5' }}>
                 <Header>
                     {isAuthenticated && (<HeaderPage user={user} onLogout={handleLogout} />)}
                 </Header>

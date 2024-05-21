@@ -8,6 +8,13 @@ const api = axios.create({
     },
 });
 
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    profileImage: string;
+}
+
 // Authentication
 export const authenticate = (credentials) => api.post('/authenticate', credentials);
 
