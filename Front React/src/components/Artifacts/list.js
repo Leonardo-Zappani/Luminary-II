@@ -45,9 +45,9 @@ const ArtifactList = () => {
             key: 'action',
             render: (text, record) => (
                 <div>
-                    <Button onClick={() => navigate(`/artifacts/edit/${record.id}`)}>Edit</Button>
+                    <Button onClick={() => navigate(`/artifacts/edit/${record.id}`)}>Editar</Button>
                     <Popconfirm title="Are you sure?" onConfirm={() => handleDelete(record.id)}>
-                        <Button type="link">Delete</Button>
+                        <Button type="link">Deletar</Button>
                     </Popconfirm>
                 </div>
             ),
@@ -55,9 +55,9 @@ const ArtifactList = () => {
     ];
 
     return (
-        <div>
-            <Button type="primary" onClick={() => navigate('/artifacts/create')}>Create Artifact</Button>
-            <Table dataSource={artifacts} columns={columns} rowKey="id" loading={loading} />
+        <div style={{height: '100%', width: '100%'}}>
+            <Button style={{ marginBottom: 16}} type="primary" onClick={() => navigate('/artifacts/create')}>Registrar artefato</Button>
+            <Table dataSource={artifacts} columns={columns} rowKey="id" loading={loading}/>
         </div>
     );
 };

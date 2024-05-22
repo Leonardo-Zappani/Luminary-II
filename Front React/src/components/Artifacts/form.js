@@ -60,8 +60,8 @@ const ArtifactForm = () => {
                 <Input />
             </Form.Item>
             <Form.Item>
-                <Button type="primary" htmlType="submit" loading={loading} key="submit">Submit</Button>
-                <Button onClick={() => navigate('/artifacts')} style={{ marginLeft: '10px' }} key="cancel">Cancel</Button>
+                <Button type="primary" htmlType="submit" loading={loading} key="submit">Enviar</Button>
+                <Button onClick={() => navigate('/artifacts')} style={{ marginLeft: '10px' }} key="cancel">Cancelar</Button>
             </Form.Item>
         </Form>
     );
