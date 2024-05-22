@@ -9,6 +9,7 @@ import { getToken, isLoggedIn, logout } from './services/authService';
 import { loadUser } from "./services/apiService";
 import { HeaderPage } from "./components/Header/header";
 import ArtifactPage from './components/Artifacts/page'
+import ItemsPage from './components/Items/page'
 
 const { Header, Content } = Layout;
 
@@ -68,8 +69,8 @@ const App = () => {
                                 element={isAuthenticated ? <ArtifactPage /> : <Navigate to="/login" />}
                             />
                             <Route
-                                path="/items"
-                                element={!isAuthenticated ? <Register setToken={handleLogin}/> : <Navigate to="/" />}
+                                path="/items/*"
+                                element={isAuthenticated ? <ItemsPage /> : <Navigate to="/login" />}
                             />
                             <Route
                                 path="/"
