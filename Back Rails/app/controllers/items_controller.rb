@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(name: params[:name], description: params[:description])
 
     if @item.save
       render json: @item, status: :created, location: @item
@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1
   def update
-    if @item.update(item_params)
+    if @item.update(name: params[:name], description: params[:description])
       render json: @item
     else
       render json: @item.errors, status: :unprocessable_entity
@@ -42,10 +42,5 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def item_params
-      params.require(:item).permit(:name, :description)
     end
 end
