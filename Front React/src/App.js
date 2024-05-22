@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { Layout } from 'antd';
-import {jwtDecode} from 'jwt-decode'; // Update import to named import
+import {jwtDecode} from 'jwt-decode'
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Activities from './components/Dashboard/Activities';
 import { getToken, isLoggedIn, logout } from './services/authService';
-import {loadUser} from "./services/apiService";
-import {HeaderPage} from "./components/Header/header";
+import { loadUser } from "./services/apiService";
+import { HeaderPage } from "./components/Header/header";
+import ArtifactPage from './components/Artifacts/page'
 
 const { Header, Content } = Layout;
 
@@ -35,7 +36,7 @@ const App = () => {
 
     const handleLogin = (token) => {
         localStorage.setItem('token', token.auth_token);
-        localStorage.setItem('userId', token.user_id); // Use consistent key 'userId'
+        localStorage.setItem('userId', token.user_id);
         setUserId(token.user_id);
         setIsAuthenticated(true);
     };
@@ -63,8 +64,8 @@ const App = () => {
                                 element={!isAuthenticated ? <Register setToken={handleLogin}/> : <Navigate to="/" />}
                             />
                             <Route
-                                path="/artifacts"
-                                element={!isAuthenticated ? <Register setToken={handleLogin}/> : <Navigate to="/" />}
+                                path="/artifacts/*"
+                                element={isAuthenticated ? <ArtifactPage /> : <Navigate to="/login" />}
                             />
                             <Route
                                 path="/items"
