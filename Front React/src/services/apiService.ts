@@ -21,6 +21,7 @@ export const register = (user: User) => api.post('/users', user);
 
 // Artifacts
 export const fetchArtifacts = () => api.get('/artifacts');
+export const loadArtifact = (id) => api.get(`/artifacts/${id}`);
 export const createArtifact = (artifact) => api.post('/artifacts', artifact);
 export const updateArtifact = (id, artifact) => api.put(`/artifacts/${id}`, artifact);
 export const deleteArtifact = (id) => api.delete(`/artifacts/${id}`);

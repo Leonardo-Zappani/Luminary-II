@@ -15,7 +15,7 @@ class ArtifactsController < ApplicationController
 
   # POST /artifacts
   def create
-    @artifact = Artifact.new(artifact_params)
+    @artifact = Artifact.new(description: params[:description], name: params[:name])
 
     if @artifact.save
       render json: @artifact, status: :created, location: @artifact
@@ -26,7 +26,7 @@ class ArtifactsController < ApplicationController
 
   # PATCH/PUT /artifacts/1
   def update
-    if @artifact.update(artifact_params)
+    if @artifact.update(description: params[:description], name: params[:name])
       render json: @artifact
     else
       render json: @artifact.errors, status: :unprocessable_entity
@@ -42,10 +42,5 @@ class ArtifactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_artifact
       @artifact = Artifact.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def artifact_params
-      params.fetch(:artifact, {})
     end
 end
