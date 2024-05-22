@@ -10,16 +10,18 @@ interface HeaderProps {
 
 export const HeaderPage: React.FC<HeaderProps> = (props: HeaderProps) => {
     const { user, onLogout } = props;
-    const [selectedKey, setSelectedKey] = useState<string | null>('artifacts');
+    const url = window.location.href.split('http://localhost:3001/')[1].split('/')[0] || 'artifacts';
+
+    const [selectedKey, setSelectedKey] = useState<string>(url);
 
     useEffect(() => {
-        if (!user || !selectedKey) return;
+        if (!user) return;
 
         const currentPath = window.location.pathname;
-        const targetPath = `/${selectedKey}`;
+        const targetPath = `/${selectedKey}/`;
 
         if (currentPath !== targetPath) {
-            window.history.pushState({}, '', targetPath);
+            window.history.replaceState({}, '', targetPath);
         }
     }, [selectedKey, user]);
 
