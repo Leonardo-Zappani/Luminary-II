@@ -63,6 +63,14 @@ const App = () => {
                                 element={!isAuthenticated ? <Register setToken={handleLogin}/> : <Navigate to="/" />}
                             />
                             <Route
+                                path="/artifacts"
+                                element={!isAuthenticated ? <Register setToken={handleLogin}/> : <Navigate to="/" />}
+                            />
+                            <Route
+                                path="/items"
+                                element={!isAuthenticated ? <Register setToken={handleLogin}/> : <Navigate to="/" />}
+                            />
+                            <Route
                                 path="/"
                                 element={isAuthenticated ? <Activities user={user} /> : <Navigate to="/login" />}
                             />
