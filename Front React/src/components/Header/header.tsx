@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Layout, Avatar, Dropdown, Menu } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-import { User } from '../../services/apiService';
+import React, { useEffect, useState } from 'react'
+import { Layout, Avatar, Dropdown, Menu } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
+import { User } from '../../services/apiService'
 
 interface HeaderProps {
-    user: User;
-    onLogout: () => void;
+    user: User
+    onLogout: () => void
 }
 
-export const HeaderPage: React.FC<HeaderProps> = (props: HeaderProps) => {
-    const { user, onLogout } = props;
-    const url = window.location.href.split('http://localhost:3001/')[1].split('/')[0] || 'artifacts';
-
-    const [selectedKey, setSelectedKey] = useState<string>(url);
+export const HeaderPage: React.FC<HeaderProps> = ({ user, onLogout }) => {
+    const url = window.location.href.split('http://localhost:3001/')[1].split('/')[0] || 'artifacts'
+    const [selectedKey, setSelectedKey] = useState<string>(url)
 
     useEffect(() => {
-        if (!user) return;
+        if (!user) return
 
-        const currentPath = window.location.pathname;
-        const targetPath = `/${selectedKey}/`;
+        const currentPath = window.location.pathname
+        const targetPath = `/${selectedKey}/`
 
         if (currentPath !== targetPath) {
-            window.history.replaceState({}, '', targetPath);
+            window.history.replaceState({}, '', targetPath)
         }
-    }, [selectedKey, user]);
+    }, [selectedKey, user])
 
-    if (!user) return null;
+    if (!user) return null
 
     const menu = (
         <Menu>
@@ -33,7 +31,7 @@ export const HeaderPage: React.FC<HeaderProps> = (props: HeaderProps) => {
                 Logout
             </Menu.Item>
         </Menu>
-    );
+    )
 
     return (
         <Layout.Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -58,5 +56,5 @@ export const HeaderPage: React.FC<HeaderProps> = (props: HeaderProps) => {
                 </Dropdown>
             </div>
         </Layout.Header>
-    );
-};
+    )
+}
