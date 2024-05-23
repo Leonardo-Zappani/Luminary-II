@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Table, Button, notification, Popconfirm } from 'antd';
-import {fetchItems, deleteItem, loadItem} from '../../services/apiService';
+import { fetchItems, deleteItem } from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
 
 const ItemList = () => {

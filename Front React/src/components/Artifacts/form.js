@@ -1,80 +1,96 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Form, Input, Button, notification, Card, Select } from 'antd';
-import { createArtifact, loadArtifact, updateArtifact, loadUsers, fetchItems } from '../../services/apiService';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from 'react'
+import { Form, Input, Button, notification, Card, Select } from 'antd'
+import { createArtifact, loadArtifact, updateArtifact, loadUsers, fetchItems } from '../../services/apiService'
+import { useNavigate, useParams } from 'react-router-dom'
 
-const { Option } = Select;
+const { Option } = Select
 
 const ArtifactForm = () => {
-    const [form] = Form.useForm();
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const [users, setUsers] = useState([]);
-    const [items, setItems] = useState([]);
+    const [form] = Form.useForm()
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+    const { id } = useParams()
+    const [users, setUsers] = useState([])
+    const [items, setItems] = useState([])
 
     const load = useCallback(async () => {
-        setLoading(true);
+        setLoading(true)
         try {
-            const response = await loadArtifact(id);
-            form.setFieldsValue(response.data);
-            form.setFieldsValue({items: response.data.item_ids, users: response.data.user_ids});
+            const response = await loadArtifact(id)
+            form.setFieldsValue(response.data)
+            form.setFieldsValue({ items: response.data.item_ids, users: response.data.user_ids })
         } catch (error) {
-            notification.error({ message: 'Failed to load artifact', description: error.message });
+            notification.error({ message: 'Failed to load artifact', description: error.message })
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
-    }, [id, form]);
+    }, [id, form])
 
     useEffect(() => {
         if (id) {
-            load();
+            load()
         }
-    }, [id, load]);
+    }, [id, load])
 
     useEffect(() => {
-        loadUsers().then((response) => setUsers(response.data))
-        fetchItems().then((response) => setItems(response.data))
-    }, []);
+        loadUsers().then(response => setUsers(response.data))
+        fetchItems().then(response => setItems(response.data))
+    }, [])
 
     const onFinish = async (values) => {
-        setLoading(true);
+        setLoading(true)
         try {
             if (id) {
-                await updateArtifact(id, values);
-                notification.success({ message: 'Artifact updated successfully' });
+                await updateArtifact(id, values)
+                notification.success({ message: 'Artefato atualizado com sucesso!' })
             } else {
-                await createArtifact(values);
-                notification.success({ message: 'Artifact created successfully' });
+                await createArtifact(values)
+                notification.success({ message: 'Artifato criado com sucesso!' })
             }
-            navigate('/artifacts');
+            navigate('/artifacts')
         } catch (error) {
-            notification.error({ message: 'Operation failed', description: error.message });
+            notification.error({ message: 'Oops, a operação falhou', description: error.message })
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
-    };
+    }
 
     return (
         <Card width={400}>
-            <Form style={{width: 450}} form={form} onFinish={onFinish} layout="vertical">
-                <Form.Item name="name" label="Name" rules={[{ required: true, message: 'Adicione um nome!' }]}>
+            <Form style={{ width: 450 }} form={form} onFinish={onFinish} layout="vertical">
+                <Form.Item
+                    name="name"
+                    label="Name"
+                    rules={[{ required: true, message: 'Adicione um nome!' }]}
+                >
                     <Input placeholder="Dê um bom nome" />
                 </Form.Item>
                 <Form.Item name="description" label="Description">
                     <Input placeholder="Adicione uma descrição" />
                 </Form.Item>
-                <Form.Item name="users" label="Atribuir para " rules={[{ required: true, message: 'Selecione um usuario!' }]}>
+                <Form.Item
+                    name="users"
+                    label="Atribuir para"
+                    rules={[{ required: true, message: 'Selecione um usuario!' }]}
+                >
                     <Select mode="multiple" placeholder="Selecione os usuarios">
                         {users.length > 0 && users.map(user => (
-                            <Option key={user.id} value={user.id}>{user.name}</Option>
+                            <Option key={user.id} value={user.id}>
+                                {user.name}
+                            </Option>
                         ))}
                     </Select>
                 </Form.Item>
-                <Form.Item name="items" label="Selecione os items" rules={[{ required: true, message: 'Selecione um item!' }]}>
+                <Form.Item
+                    name="items"
+                    label="Selecione os items"
+                    rules={[{ required: true, message: 'Selecione um item!' }]}
+                >
                     <Select mode="multiple" placeholder="Selecione os items">
                         {items.length > 0 && items.map(item => (
-                            <Option key={item.id} value={item.id}>{item.name}: {item.description}</Option>
+                            <Option key={item.id} value={item.id}>
+                                {item.name}: {item.description}
+                            </Option>
                         ))}
                     </Select>
                 </Form.Item>
@@ -84,7 +100,7 @@ const ArtifactForm = () => {
                 </Form.Item>
             </Form>
         </Card>
-    );
-};
+    )
+}
 
-export default ArtifactForm;
+export default ArtifactForm

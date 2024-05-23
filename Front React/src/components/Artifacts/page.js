@@ -1,9 +1,7 @@
-// src/components/ArtifactPage.js
-
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import ArtifactList from './list';
-import ArtifactForm from './form';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import ArtifactList from './list'
+import ArtifactForm from './form'
 
 const ArtifactPage = () => {
     return (
@@ -12,7 +10,7 @@ const ArtifactPage = () => {
             <Route path="/create" element={<ArtifactForm />} />
             <Route path="/edit/:id" element={<ArtifactForm />} />
         </Routes>
-    );
-};
+    )
+}
 
-export default ArtifactPage;
+export default ArtifactPage
