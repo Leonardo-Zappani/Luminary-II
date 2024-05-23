@@ -39,7 +39,7 @@ const ItemList = () => {
         { title: 'Name', dataIndex: 'name', key: 'name', width: 300 },
         { title: 'Description', dataIndex: 'description', key: 'description', width: 300 },
         {
-            title: 'Action',
+            title: 'Ação',
             key: 'action',
             width: 25,
             render: (text, record) => (

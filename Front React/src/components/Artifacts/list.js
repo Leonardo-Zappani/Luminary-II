@@ -41,7 +41,7 @@ const ArtifactList = () => {
         { title: 'Usuários destinados', dataIndex: 'assigned_names', key: 'assigned_names' },
         { title: 'Items selecionados', dataIndex: 'item_names', key: 'item_names' },
         {
-            title: 'Action',
+            title: 'Ação',
             key: 'action',
             render: (text, record) => (
                 <div>
