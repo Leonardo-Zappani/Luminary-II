@@ -1,41 +1,23 @@
 class ArtifactsController < ApplicationController
-  before_action :set_artifact, only: %i[ show update destroy ]
+  before_action :set_artifact, only: %i[show update destroy]
 
   # GET /artifacts
   def index
-    @artifacts = Artifact.all
-    payload = @artifacts.map do |artifact|
-      {
-        id: artifact.id,
-        name: artifact.name,
-        description: artifact.description,
-        assigned_names: artifact.user_names,
-        item_names: artifact.item_names,
-      }
-    end
-
-    render json: payload
-    end
-
+    artifacts = Artifact.all
+    render json: artifacts_payload(artifacts)
+  end
 
   # GET /artifacts/1
   def show
-    payload = {
-      id: @artifact.id,
-      name: @artifact.name,
-      description: @artifact.description,
-      assigned_names: @artifact.user_ids&.split(','),
-      item_names: @artifact.item_ids&.split(','),
-    }
-    render json: payload
+    render json: artifact_payload(@artifact)
   end
 
   # POST /artifacts
   def create
-    @artifact = Artifact.new(description: params[:description], name: params[:name], user_ids: params[:users].join(','), item_ids: params[:items].join(','))
+    @artifact = Artifact.new(artifact_params)
 
     if @artifact.save
-      render json: @artifact, status: :created, location: @artifact
+      render json: artifact_payload(@artifact), status: :created, location: @artifact
     else
       render json: @artifact.errors, status: :unprocessable_entity
     end
@@ -43,8 +25,8 @@ class ArtifactsController < ApplicationController
 
   # PATCH/PUT /artifacts/1
   def update
-    if @artifact.update(description: params[:description], name: params[:name], user_ids: params[:users].join(','), item_ids: params[:items].join(','))
-      render json: @artifact
+    if @artifact.update(artifact_params)
+      render json: artifact_payload(@artifact)
     else
       render json: @artifact.errors, status: :unprocessable_entity
     end
@@ -56,8 +38,33 @@ class ArtifactsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_artifact
-      @artifact = Artifact.find(params[:id])
+
+  def set_artifact
+    @artifact = Artifact.find(params[:id])
+  end
+
+  def artifact_params
+    {
+      name: params[:name],
+      description: params[:description],
+      user_ids: params[:users].join(','),
+      item_ids: params[:items].join(',')
+    }
+  end
+
+  def artifact_payload(artifact)
+    {
+      id: artifact.id,
+      name: artifact.name,
+      description: artifact.description,
+      assigned_names: artifact.user_ids&.split(','),
+      item_names: artifact.item_ids&.split(',')
+    }
+  end
+
+  def artifacts_payload(artifacts)
+    artifacts.map do |artifact|
+      artifact_payload(artifact)
     end
+  end
 end
