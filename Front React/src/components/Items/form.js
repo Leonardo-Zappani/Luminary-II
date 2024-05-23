@@ -15,7 +15,7 @@ const ItemForm = () => {
             const response = await loadItem(id);
             form.setFieldsValue(response.data);
         } catch (error) {
-            notification.error({ message: 'Failed to load artifact', description: error.message });
+            notification.error({ message: 'Falha', description: error.message });
         } finally {
             setLoading(false);
         }

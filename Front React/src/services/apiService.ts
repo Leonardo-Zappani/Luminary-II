@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from './authService';
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000', // Ensure this points to your Rails server
+    baseURL: 'http://localhost:3000',
     headers: {
         Authorization: `Bearer ${getToken()}`,
     },
