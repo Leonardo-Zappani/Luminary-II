@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update destroy ]
+  before_action :set_user, only: %i[show update destroy]
 
   # GET /users
   def index
-    @users = User.all
-
-    render json: @users
+    users = User.all
+    render json: users
   end
 
   # GET /users/1
@@ -15,15 +14,12 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.create!(email: params[:email], password: params[:password], name: params[:name])
+    @user = User.new(user_params)
 
-    sleep 0.1
-
-    command = AuthenticateUser.call(params[:email], params[:password])
-
-    if command.success?
-      user = User.find_by(email: params[:email])
-      render json: { auth_token: command.result, user_id: user.id }
+    if @user.save
+      authenticate_and_render(@user)
+    else
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
@@ -42,13 +38,23 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.permit(:email, :password)
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.permit(:email, :password, :name)
+  end
+
+  def authenticate_and_render(user)
+    sleep 0.1
+    command = AuthenticateUser.call(user.email, user.password)
+
+    if command.success?
+      render json: { auth_token: command.result, user_id: user.id }
+    else
+      render json: { error: 'Authentication failed' }, status: :unauthorized
     end
+  end
 end
