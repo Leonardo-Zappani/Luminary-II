@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, Card, notification } from 'antd';
-import { authenticate } from '../../services/apiService';
+import React, { useState } from 'react'
+import { Form, Input, Button, Card, notification } from 'antd'
+import { authenticate } from '../../services/apiService'
 
 const Login = ({ setToken }) => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     const onFinish = async (values) => {
-        setLoading(true);
+        setLoading(true)
         try {
-            const response = await authenticate(values); // Use the correct function
-            setToken(response.data);
-            notification.success({ message: 'Login successful!' });
+            const response = await authenticate(values)
+            setToken(response.data)
+            notification.success({ message: 'Login successful!' })
         } catch (error) {
-            notification.error({ message: 'Login failed', description: error.message });
+            notification.error({ message: 'Login failed', description: error.message })
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
-    };
+    }
 
     return (
         <div style={{
@@ -45,11 +45,10 @@ const Login = ({ setToken }) => {
                         <Input.Password placeholder="Senha" />
                     </Form.Item>
                     <Form.Item>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <Button type="primary" htmlType="submit" loading={loading}>
                                 Login
                             </Button>
-
                             <Button href="/register" type="primary" htmlType="button">
                                 Registrar
                             </Button>
@@ -58,7 +57,7 @@ const Login = ({ setToken }) => {
                 </Form>
             </Card>
         </div>
-    );
-};
+    )
+}
 
-export default Login;
+export default Login

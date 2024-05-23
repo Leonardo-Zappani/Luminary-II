@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
-import {Form, Input, Button, notification, Card} from 'antd';
-import {register} from "../../services/apiService";
+import React, { useState } from 'react'
+import { Form, Input, Button, notification, Card } from 'antd'
+import { register } from '../../services/apiService'
 
-const Register = ({setToken}) => {
-    const [loading, setLoading] = useState(false);
+const Register = ({ setToken }) => {
+    const [loading, setLoading] = useState(false)
 
     const onFinish = async (values) => {
-        setLoading(true);
+        setLoading(true)
         try {
-            await register({...values, new_user: true}).then((result) => {
-                setLoading(false);
-                setToken(result.data);
-                window.location.reload();
-            })
-            notification.success({ message: 'Registration successful!' });
+            const result = await register({ ...values, new_user: true })
+            setLoading(false)
+            setToken(result.data)
+            window.location.reload()
+            notification.success({ message: 'Registration successful!' })
         } catch (error) {
-            notification.error({ message: 'Registration failed', description: error.message });
+            notification.error({ message: 'Registration failed', description: error.message })
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
-    };
+    }
 
     return (
         <div style={{
@@ -34,23 +33,34 @@ const Register = ({setToken}) => {
                 width: '400px',
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
             }}>
-        <Form onFinish={onFinish}>
-            <Form.Item name="email" rules={[{ required: true, message: 'Por favor, informe seu email!' }]}>
-                <Input placeholder="email" />
-            </Form.Item>
-            <Form.Item name="name" rules={[{ required: true, message: 'Por favor, informe seu nome!' }]}>
-                <Input placeholder="nome" />
-            </Form.Item>
-            <Form.Item name="password" rules={[{ required: true, message: 'Por favor, informe sua senha!' }]}>
-                <Input.Password placeholder="Senha" />
-            </Form.Item>
-            <Form.Item>
-                <Button type="primary" htmlType="submit" loading={loading}>Registrar!</Button>
-            </Form.Item>
-        </Form>
+                <Form onFinish={onFinish}>
+                    <Form.Item
+                        name="email"
+                        rules={[{ required: true, message: 'Por favor, informe seu email!' }]}
+                    >
+                        <Input placeholder="Email" />
+                    </Form.Item>
+                    <Form.Item
+                        name="name"
+                        rules={[{ required: true, message: 'Por favor, informe seu nome!' }]}
+                    >
+                        <Input placeholder="Nome" />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: 'Por favor, informe sua senha!' }]}
+                    >
+                        <Input.Password placeholder="Senha" />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" loading={loading}>
+                            Registrar!
+                        </Button>
+                    </Form.Item>
+                </Form>
             </Card>
         </div>
-    );
-};
+    )
+}
 
-export default Register;
+export default Register
