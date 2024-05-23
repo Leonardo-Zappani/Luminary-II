@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_14_003728) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_23_224006) do
   create_table "actions", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_003728) do
     t.integer "actions_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_ids"
+    t.string "item_ids"
     t.index ["actions_id"], name: "index_artifacts_on_actions_id"
   end
 
