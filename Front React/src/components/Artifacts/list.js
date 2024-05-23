@@ -45,7 +45,7 @@ const ArtifactList = () => {
             render: (text, record) => (
                 <div>
                     <Button onClick={() => navigate(`/artifacts/edit/${record.id}`)}>Editar</Button>
-                    <Popconfirm title="Are you sure?" onConfirm={() => handleDelete(record.id)}>
+                    <Popconfirm title="Tem certeza?" onConfirm={() => handleDelete(record.id)}>
                         <Button type="link">Deletar</Button>
                     </Popconfirm>
                 </div>

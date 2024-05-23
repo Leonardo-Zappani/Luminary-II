@@ -1,7 +1,7 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import ItemList from './list';
-import ItemForm from './form';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import ItemList from './list'
+import ItemForm from './form'
 
 const ItemsPage = () => {
     return (
@@ -13,4 +13,4 @@ const ItemsPage = () => {
     );
 };
 
-export default ItemsPage;
+export default ItemsPage
