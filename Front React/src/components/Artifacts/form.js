@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Form, Input, Button, notification } from 'antd';
+import {Form, Input, Button, notification, Card} from 'antd';
 import { createArtifact, loadArtifact, updateArtifact } from '../../services/apiService';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -46,7 +46,8 @@ const ArtifactForm = () => {
     };
 
     return (
-        <Form form={form} onFinish={onFinish} layout="vertical">
+        <Card width={400}>
+            <Form style={{width: 450}} form={form} onFinish={onFinish} layout="vertical">
             <Form.Item name="name" label="Name" rules={[{ required: true, message: 'Please input the name!' }]}>
                 <Input />
             </Form.Item>
@@ -64,6 +65,7 @@ const ArtifactForm = () => {
                 <Button onClick={() => navigate('/artifacts')} style={{ marginLeft: '10px' }} key="cancel">Cancelar</Button>
             </Form.Item>
         </Form>
+    </Card>
     );
 };
 
