@@ -32,14 +32,14 @@ const ItemForm = () => {
         try {
             if (id) {
                 await updateItem(id, values);
-                notification.success({ message: 'Artifact updated successfully' });
+                notification.success({ message: 'Item deletado com sucesso!' });
             } else {
                 await createItem(values);
-                notification.success({ message: 'Artifact created successfully' });
+                notification.success({ message: 'Item criado com sucesso!' });
             }
-            navigate('/artifacts');
+            navigate('/items');
         } catch (error) {
-            notification.error({ message: 'Operation failed', description: error.message });
+            notification.error({ message: 'Oops, a operação falhou!', description: error.message });
         } finally {
             setLoading(false);
         }
@@ -56,7 +56,7 @@ const ItemForm = () => {
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" loading={loading} key="submit">Criar</Button>
-                    <Button onClick={() => navigate('/artifacts')} style={{ marginLeft: '10px' }} key="cancel">Cancelar</Button>
+                    <Button onClick={() => navigate('/items')} style={{ marginLeft: '10px' }} key="cancel">Cancelar</Button>
                 </Form.Item>
             </Form>
         </Card>

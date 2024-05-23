@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Table, Button, notification, Popconfirm } from 'antd';
-import { fetchArtifacts, deleteArtifact } from '../../services/apiService';
+import {fetchItems, deleteItem, loadItem} from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
 
 const ItemList = () => {
@@ -10,13 +10,13 @@ const ItemList = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        loadArtifacts();
+        loadItems();
     }, []);
 
-    const loadArtifacts = async () => {
+    const loadItems = async () => {
         setLoading(true);
         try {
-            const response = await fetchArtifacts();
+            const response = await fetchItems();
             setArtifacts(response.data);
         } catch (error) {
             notification.error({ message: 'Failed to load artifacts', description: error.message });
@@ -27,9 +27,9 @@ const ItemList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await deleteArtifact(id);
+            await deleteItem(id);
             notification.success({ message: 'Artifact deleted successfully' });
-            loadArtifacts();
+            loadItems();
         } catch (error) {
             notification.error({ message: 'Failed to delete artifact', description: error.message });
         }

@@ -3,8 +3,8 @@ import React from 'react';
 const Activities = () => {
     return (
         <div>
-            <h1>Activities</h1>
-            <p>Welcome to the activities dashboard!</p>
+            <h1>Bem vindo ao Luminary!</h1>
+            <p>Seu gerenciador de artefatos</p>
         </div>
     );
 };
