@@ -1,11 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show update destroy ]
+  before_action :set_item, only: %i[show update destroy]
 
   # GET /items
   def index
-    @items = Item.all
-
-    render json: @items
+    items = Item.all
+    render json: items
   end
 
   # GET /items/1
@@ -15,7 +14,7 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    @item = Item.new(name: params[:name], description: params[:description])
+    @item = Item.new(item_params)
 
     if @item.save
       render json: @item, status: :created, location: @item
@@ -26,7 +25,7 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1
   def update
-    if @item.update(name: params[:name], description: params[:description])
+    if @item.update(item_params)
       render json: @item
     else
       render json: @item.errors, status: :unprocessable_entity
@@ -39,8 +38,12 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def item_params
+    params.permit(:name, :description)
+  end
 end
