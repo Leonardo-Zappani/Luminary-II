@@ -17,8 +17,11 @@ const ArtifactForm = () => {
         setLoading(true)
         try {
             const response = await loadArtifact(id)
-            form.setFieldsValue(response.data)
-            form.setFieldsValue({ items: response.data.item_ids, users: response.data.user_ids })
+            form.setFieldsValue({
+                ...response.data,
+                users: response.data.user_ids.map(id => id.toString()),
+                items: response.data.item_ids.map(id => id.toString()),
+            })
         } catch (error) {
             notification.error({ message: 'Oops, houve uma falha.', description: error.message })
         } finally {
@@ -75,7 +78,7 @@ const ArtifactForm = () => {
                 >
                     <Select mode="multiple" placeholder="Selecione os usuarios">
                         {users.length > 0 && users.map(user => (
-                            <Option key={user.id} value={user.id}>
+                            <Option key={user.id} value={user.id.toString()}>
                                 {user.name}
                             </Option>
                         ))}
@@ -88,7 +91,7 @@ const ArtifactForm = () => {
                 >
                     <Select mode="multiple" placeholder="Selecione os items">
                         {items.length > 0 && items.map(item => (
-                            <Option key={item.id} value={item.id}>
+                            <Option key={item.id} value={item.id.toString()}>
                                 {item.name}: {item.description}
                             </Option>
                         ))}
