@@ -2,26 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { Layout, Avatar, Dropdown, Menu } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { User } from '../../services/apiService'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 interface HeaderProps {
     user: User
     onLogout: () => void
 }
 
-export const HeaderPage: React.FC<HeaderProps> = ({ user, onLogout }) => {
-    const url = window.location.href.split('http://localhost:3001/')[1].split('/')[0] || 'artifacts'
-    const [selectedKey, setSelectedKey] = useState<string>(url)
+const HeaderPage: React.FC<HeaderProps> = ({ user, onLogout }) => {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [selectedKey, setSelectedKey] = useState<string>(location.pathname.split('/')[1] || 'artifacts')
 
     useEffect(() => {
         if (!user) return
-
-        const currentPath = window.location.pathname
-        const targetPath = `/${selectedKey}/`
-
-        if (currentPath !== targetPath) {
-            window.history.replaceState({}, '', targetPath)
-        }
-    }, [selectedKey, user])
+        setSelectedKey(location.pathname.split('/')[1])
+    }, [location.pathname, user])
 
     if (!user) return null
 
@@ -33,16 +29,20 @@ export const HeaderPage: React.FC<HeaderProps> = ({ user, onLogout }) => {
         </Menu>
     )
 
+    const handleMenuClick = (e) => {
+        setSelectedKey(e.key)
+        navigate(`/${e.key}`)
+    }
+
     return (
         <Layout.Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ color: 'white', fontSize: '20px', marginRight: '20px' }}>Luminary II</div>
                 <Menu
-                    onClick={(e) => setSelectedKey(e.key)}
+                    onClick={handleMenuClick}
                     selectedKeys={[selectedKey]}
                     theme="dark"
                     mode="horizontal"
-                    defaultSelectedKeys={[selectedKey]}
                     style={{ lineHeight: '64px', width: '400px' }}
                 >
                     <Menu.Item key="artifacts">Artifacts</Menu.Item>
@@ -58,3 +58,5 @@ export const HeaderPage: React.FC<HeaderProps> = ({ user, onLogout }) => {
         </Layout.Header>
     )
 }
+
+export default HeaderPage
