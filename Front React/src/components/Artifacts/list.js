@@ -27,10 +27,10 @@ const ArtifactList = () => {
     const handleDelete = async (id) => {
         try {
             await deleteArtifact(id)
-            notification.success({ message: 'Artifact deleted successfully' })
+            notification.success({ message: 'Artefato deleteado com sucesso!' })
             loadArtifacts()
         } catch (error) {
-            notification.error({ message: 'Failed to delete artifact', description: error.message })
+            notification.error({ message: 'Oops, houve uma falha.', description: error.message })
         }
     }
 

@@ -57,8 +57,8 @@ class ArtifactsController < ApplicationController
       id: artifact.id,
       name: artifact.name,
       description: artifact.description,
-      assigned_names: artifact.user_ids&.split(','),
-      item_names: artifact.item_ids&.split(',')
+      assigned_names: artifact.user_names&.split(','),
+      item_names: artifact.item_names&.split(',')
     }
   end
 

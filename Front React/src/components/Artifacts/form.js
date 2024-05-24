@@ -20,7 +20,7 @@ const ArtifactForm = () => {
             form.setFieldsValue(response.data)
             form.setFieldsValue({ items: response.data.item_ids, users: response.data.user_ids })
         } catch (error) {
-            notification.error({ message: 'Failed to load artifact', description: error.message })
+            notification.error({ message: 'Oops, houve uma falha.', description: error.message })
         } finally {
             setLoading(false)
         }
