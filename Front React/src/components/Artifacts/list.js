@@ -37,8 +37,8 @@ const ArtifactList = () => {
     const columns = [
         { title: 'Nome', dataIndex: 'name', key: 'name' },
         { title: 'Descrição', dataIndex: 'description', key: 'description' },
-        { title: 'Usuários destinados', dataIndex: 'assigned_names', key: 'assigned_names' },
-        { title: 'Items selecionados', dataIndex: 'item_names', key: 'item_names' },
+        { title: 'Usuários destinados', dataIndex: 'user_names', key: 'assigned_names' },
+        { title: 'Items selecionados', dataIndex: 'item_grouped_names', key: 'item_names' },
         {
             title: 'Ação',
             key: 'action',

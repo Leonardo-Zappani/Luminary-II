@@ -57,14 +57,24 @@ class ArtifactsController < ApplicationController
       id: artifact.id,
       name: artifact.name,
       description: artifact.description,
-      assigned_names: artifact.user_names&.split(','),
-      item_names: artifact.item_names&.split(',')
+      user_ids: artifact.user_ids&.split(','),
+      item_ids: artifact.item_ids&.split(',')
+    }
+  end
+
+  def artifact_show_payload(artifact)
+    {
+      id: artifact.id,
+      name: artifact.name,
+      description: artifact.description,
+      user_names: artifact.user_names,
+      item_grouped_names: artifact.item_grouped_names
     }
   end
 
   def artifacts_payload(artifacts)
     artifacts.map do |artifact|
-      artifact_payload(artifact)
+      artifact_show_payload(artifact)
     end
   end
 end
